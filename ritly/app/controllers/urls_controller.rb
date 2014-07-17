@@ -18,6 +18,16 @@ class UrlsController < ApplicationController
 	  redirect_to url_path(@url)
   end
 
+  def update
+  	@url.update url_params
+  	redirect_to url_path(@url)
+  end
+
+  def destroy
+  	@url.destroy
+  	redirect_to new_url_path
+  end
+
   private
     def url_params
       params.require(:url).permit(:link)  
