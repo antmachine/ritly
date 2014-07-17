@@ -1,9 +1,7 @@
 class UrlsController < ApplicationController
 
-	before_action :load_url, only: [:show, :edit, :update, :destroy]
-
 	def index
-		@urls = Urls.all
+		@urls = Url.all
 	end
 
 	def new
@@ -11,10 +9,18 @@ class UrlsController < ApplicationController
 	end
 
   def create
+  	#grabbing the params from the submission form
 	  url_params = params.require(:url).permit(:link)
-	  url_params["random_string"] = SecureRandom.hex(3)
+
+	  if params["url"]["random_string"] == nil
+	  	#app generated random string for when user doesn't provide one
+	  	url_params[:random_string] = secure_hash
+	  else
+	  	#use the random_string provided by the user
+	  	url_params[:random_string] = params["url"]["random_string"]
+	  end
+	  #save the params to the database
 	  @url = Url.create url_params
-	 
 	  redirect_to url_path(@url)
   end
 
@@ -33,7 +39,7 @@ class UrlsController < ApplicationController
       params.require(:url).permit(:link)  
     end
 
-  	def load_url
-    	@url = Url.find(params[:id])
+  	def secure_hash
+  		secure_hash = SecureRandom.urlsafe_base64(4)
   	end
 end

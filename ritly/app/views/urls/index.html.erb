@@ -1,0 +1,6 @@
+<h1>Ritly: A URL shortener</h1>
+
+<%= @urls.each do |url|  %>
+	<h3>Link: </h3><%= p url.link %>
+	<h3>Short Version: </h3><%= p url.random_string  %>
+<% end %>
