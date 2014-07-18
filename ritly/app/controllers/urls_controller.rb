@@ -34,6 +34,19 @@ class UrlsController < ApplicationController
   	redirect_to new_url_path
   end
 
+  def show
+  	@url = Url.find(params[:id])
+  end
+
+  def go
+    @url = Url.find_by random_string: params['random_string']
+    if @url.link.start_with?('http://') == true || @url.link.start_with?('https://') == true
+      redirect_to @url[:link]
+    else
+      redirect_to "http://#{@url[:link]}"
+    end
+  end
+
   private
     def url_params
       params.require(:url).permit(:link)  
