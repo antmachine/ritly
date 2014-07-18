@@ -1,0 +1,10 @@
+<h1>Ritly: A URL shortener</h1>
+
+<% @urls.each do |url|  %>
+	<p><h4>Link: </h4><%= p url.link %></p>
+	<p><h4>Short Version: </h4><%= p url.random_string  %></p>
+<% end %>
+
+<form action="/urls/new" method="link">
+	<input type="submit" value="Create New">
+</form>
