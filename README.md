@@ -1,10 +1,9 @@
-README
+This is a simple app that can shorten URLS.
 
-* Ruby version 2.1.1
+Download & clone as you please.
 
-* Configuration<br>
-postgres database
+Run 'rake db:create && rake db:migrate' to set up the postgresql database.
 
-* To run<br>
-In parent directory in Terminal, type "rails s"<br>
-Navigate to "localhost:3000" in your browser
+Use 'rails s' in the Terminal, then navigate to 'localhost:3000' in your browser to play!
+
+If you want to play around with it right away, a functional version can be found online at [ant-ritly.herokuapp.com](http://ant-ritly.herokuapp.com)
